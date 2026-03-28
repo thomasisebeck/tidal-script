@@ -2,7 +2,8 @@
 
 urls=(
 #  "https://tidal.com/browse/playlist/3799408e-8129-48d4-8e46-a7b77189937e"
-https://tidal.com/browse/playlist/3631bbb7-7040-4363-b22c-41aab65d6a0a
+  "https://tidal.com/browse/playlist/2bdf5c87-d967-41db-81c3-2cd4262ce9f5"
+# "https://tidal.com/browse/playlist/3631bbb7-7040-4363-b22c-41aab65d6a0a"
 # "https://tidal.com/browse/playlist/0fa58b92-886c-4070-84da-2ba2b45cc519"
 # "https://tidal.com/browse/playlist/1ea538c6-59bd-4bdc-b7fc-1189e0468b65"
 # "https://tidal.com/browse/playlist/1bf541a7-d18d-4739-824e-9db6ef532410"
