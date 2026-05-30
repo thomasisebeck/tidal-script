@@ -1,7 +1,7 @@
 # login to tial
 
 ```
-rip config --tidal
+rip config
 ```
 
 # steps
