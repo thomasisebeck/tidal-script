@@ -25,7 +25,7 @@ First try:
 ```
 python -m venv .venv
 source .venv/bin/activate
-pip3 install streamprip --upgrade
+pip install streamprip --upgrade
 ```
 
 If that does not work:
