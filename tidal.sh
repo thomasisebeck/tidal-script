@@ -1,12 +1,12 @@
 #!/bin/bash
 
 urls=(
+ "https://tidal.com/browse/playlist/3d2c51c2-b3be-4ba2-9849-8980bfc25d17" # CHIMERA
  "https://tidal.com/browse/playlist/0fa58b92-886c-4070-84da-2ba2b45cc519" # ALT
  "https://tidal.com/browse/playlist/1ea538c6-59bd-4bdc-b7fc-1189e0468b65" # ASTRAL
  "https://tidal.com/browse/playlist/1bf541a7-d18d-4739-824e-9db6ef532410" # BETA
  "https://tidal.com/browse/playlist/30c336a0-c786-47e1-828c-0696c9f98505" # BUBBLE
  "https://tidal.com/browse/playlist/54776b2f-fb7f-4348-828c-43e79e1bbbea" # CADENCE
- "https://tidal.com/browse/playlist/3d2c51c2-b3be-4ba2-9849-8980bfc25d17" # CHIMERA
  "https://tidal.com/browse/playlist/480fcde9-059d-40b5-bea3-c5884badccd7" # EGAL
  "https://tidal.com/browse/playlist/7ef887d1-d5b0-4604-b021-35da4ee33524" # FLATLINE
  "https://tidal.com/browse/playlist/a92ac6ae-66df-4575-9825-30d5bf05bcfa" # FRAGMENT
@@ -33,7 +33,8 @@ urls=(
 
 for url in "${urls[@]}"; do
     echo "Downloading: $url"
-    rip url "$url"
+    # rip -c FLAC -q 3 -ndb url "$url"
+    rip -c FLAC -q 3 -ndb url "$url"
     echo "Finished: $url"
     echo "--------------------------------------"
 done

@@ -4,6 +4,12 @@
 rip config
 ```
 
+To log in again, delete the keys with:
+
+```
+nvim ~/.cofig/streamrip/config.toml
+```
+
 # steps
 
 1. export Favorites.m3u on the sd card
@@ -17,6 +23,8 @@ rip config
 First try:
 
 ```
+python -m venv .venv
+source .venv/bin/activate
 pip3 install streamprip --upgrade
 ```
 
