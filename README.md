@@ -33,3 +33,9 @@ If that does not work:
 ```
 pipx install git+https://github.com/nathom/streamrip.git@dev --force
 ```
+
+# Delete missing tracks
+
+Export library from TuneMyMusic and call it library.csv
+Run the delete-missing-tracks script
+Initiate the download again
