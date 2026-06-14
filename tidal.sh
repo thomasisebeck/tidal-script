@@ -1,7 +1,7 @@
 #!/bin/bash
 
 urls=(
- "https://tidal.com/browse/playlist/3d2c51c2-b3be-4ba2-9849-8980bfc25d17" # CHIMERA
+#"https://tidal.com/browse/playlist/3d2c51c2-b3be-4ba2-9849-8980bfc25d17" # CHIMERA
  "https://tidal.com/browse/playlist/0fa58b92-886c-4070-84da-2ba2b45cc519" # ALT
  "https://tidal.com/browse/playlist/1ea538c6-59bd-4bdc-b7fc-1189e0468b65" # ASTRAL
  "https://tidal.com/browse/playlist/1bf541a7-d18d-4739-824e-9db6ef532410" # BETA
@@ -34,7 +34,10 @@ urls=(
 for url in "${urls[@]}"; do
     echo "Downloading: $url"
     # rip -c FLAC -q 3 -ndb url "$url"
-    rip -c FLAC -q 3 -ndb url "$url"
+    rip -c FLAC -q 3 url "$url"
     echo "Finished: $url"
+    echo "Sleeping...";
+    sleep $(( 15 + RANDOM % 15 ))
+
     echo "--------------------------------------"
 done
