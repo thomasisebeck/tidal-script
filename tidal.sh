@@ -1,13 +1,14 @@
 #!/bin/bash
 
 urls=(
-#"https://tidal.com/browse/playlist/3d2c51c2-b3be-4ba2-9849-8980bfc25d17" # CHIMERA
+ "https://tidal.com/browse/playlist/3d2c51c2-b3be-4ba2-9849-8980bfc25d17" # CHIMERA
  "https://tidal.com/browse/playlist/0fa58b92-886c-4070-84da-2ba2b45cc519" # ALT
  "https://tidal.com/browse/playlist/1ea538c6-59bd-4bdc-b7fc-1189e0468b65" # ASTRAL
  "https://tidal.com/browse/playlist/1bf541a7-d18d-4739-824e-9db6ef532410" # BETA
  "https://tidal.com/browse/playlist/30c336a0-c786-47e1-828c-0696c9f98505" # BUBBLE
  "https://tidal.com/browse/playlist/54776b2f-fb7f-4348-828c-43e79e1bbbea" # CADENCE
  "https://tidal.com/browse/playlist/480fcde9-059d-40b5-bea3-c5884badccd7" # EGAL
+ "https://tidal.com/browse/playlist/de66997e-b9c8-4375-83a7-c473008cce3d" # EMBER
  "https://tidal.com/browse/playlist/7ef887d1-d5b0-4604-b021-35da4ee33524" # FLATLINE
  "https://tidal.com/browse/playlist/a92ac6ae-66df-4575-9825-30d5bf05bcfa" # FRAGMENT
  "https://tidal.com/browse/playlist/43c351fb-711b-4e48-b5c1-02e7697bfe65" # FRETLESS
@@ -20,6 +21,8 @@ urls=(
  "https://tidal.com/browse/playlist/666457a2-d903-4d56-ada3-884fd8e04e09" # LOVE
  "https://tidal.com/browse/playlist/af2c046c-73e1-4ac9-a9a7-5e7d507b378a" # MEMPHIS
  "https://tidal.com/browse/playlist/3631bbb7-7040-4363-b22c-41aab65d6a0a" # NOISE
+ "https://tidal.com/browse/playlist/14d4cc8b-33fe-419f-9a1c-7df15833e2b2" #PLUVIOPHILE
+ "https://tidal.com/browse/playlist/545a03db-fc92-4e21-a92e-8e9616b4b79b" #RAYLEIGH
  "https://tidal.com/browse/playlist/0630872b-8eb0-43fc-b61a-035f437eb0c8" # SIGMOID
  "https://tidal.com/browse/playlist/616aa074-414d-4590-bd0b-506a0b802054" # SILHOUETTES
  "https://tidal.com/browse/playlist/25604b19-9ad9-42ef-8901-054061b417a0" # SNAP
@@ -37,7 +40,7 @@ for url in "${urls[@]}"; do
     rip -c FLAC -q 3 url "$url"
     echo "Finished: $url"
     echo "Sleeping...";
-    sleep $(( 15 + RANDOM % 15 ))
+    sleep $(( 50 + RANDOM % 20 ))
 
     echo "--------------------------------------"
 done

@@ -1,44 +1,44 @@
 #!/bin/bash
 
-# Run this script to delete everything in the local playlist
-
-# Cut Favorites.m3u from the ipod and put in in the script dir
-
-M3U_FILE="./Favorites.m3u"
-BASE_PATH="/run/media/thomas/85E8-7A85"
+M3U_FILE="./gramophone_favourite.m3u"
+BASE_PATH="/run/media/thomas/"
 REMOVED_FILE_NAME="removed.txt"
 
 echo "starting..."
+> "$REMOVED_FILE_NAME"
 
-while IFS= read -r line; do
-# Skip empty lines or comments
-[[ -z "$line" ]] && continue
+while IFS= read -r line || [ -n "$line" ]; do
+    # Strip trailing carriage returns (\r) from Android line endings
+    line="${line%$'\r'}"
 
-# Replace prefix
-fixed_path="${line/85E8-7A85:/$BASE_PATH/}"
+    # Skip empty lines and M3U metadata headers
+    [[ -z "$line" ]] && continue
+    [[ "$line" == "#"* ]] && continue
 
+    # Replace relative path prefix
+    fixed_path="${line/#..\/..\/..\//$BASE_PATH}"
 
+    echo "DELETING THESE FILES:"
+    echo "--------------------------"
 
-echo "DELETING THESE FILES:"
-echo "--------------------------"
-
-if [ -f "$fixed_path" ]; then
-    filename=$(basename "$fixed_path")
-    clean_name=$(echo "$filename" | sed -E 's/^[0-9]+\. //' | sed 's/\.flac$//')
-    echo "$clean_name" >> removed.txt
-    echo "$clean_name"
-    rm "$fixed_path"
-else
-    echo "Not found: $fixed_path"
-fi
+    if [ -f "$fixed_path" ]; then
+        filename=$(basename "$fixed_path")
+        clean_name=$(echo "$filename" | sed -E 's/^[0-9]+\. //' | sed 's/\.flac$//' | sed 's/\.opus$//')
+        echo "$clean_name" >> "$REMOVED_FILE_NAME"
+        echo "$clean_name"
+        rm "$fixed_path"
+    else
+        echo "Not found: $fixed_path"
+    fi
 
 done < "$M3U_FILE"
 
 echo "--------------------------"
-
 echo "Done."
 
-while IFS= read -r line; do
+while IFS= read -r line || [ -n "$line" ]; do
+    line="${line%$'\r'}"
+    [[ -z "$line" ]] && continue
     encoded=$(printf '%s' "$line" | sed 's/ /%20/g')
     xdg-open "https://tidal.com/search?q=$encoded"
-done < removed.txt
+done < "$REMOVED_FILE_NAME"
