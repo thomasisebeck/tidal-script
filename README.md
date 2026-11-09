@@ -1,3 +1,7 @@
+# update streamrip 
+
+~/.pyenv/versions/3.12.2/bin/pip install --force-reinstall --no-cache-dir git+https://github.com/nathom/streamrip.git@main
+
 # login to tial
 
 ```

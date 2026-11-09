@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+  exec sudo "$0" "$@"
+fi
+
+
 urls=(
  "https://tidal.com/browse/playlist/3d2c51c2-b3be-4ba2-9849-8980bfc25d17" # CHIMERA
  "https://tidal.com/browse/playlist/0fa58b92-886c-4070-84da-2ba2b45cc519" # ALT
@@ -34,13 +39,35 @@ urls=(
  "https://tidal.com/browse/playlist/481bb0f9-c452-4038-affd-1e9994f29f94" # TRISKELION
 )
 
+keep_usb_on() {
+  for dev in /sys/bus/usb/devices/*/power/control; do
+    echo "on" > "$dev" 2>/dev/null
+  done
+}
+
+keep_usb_on
+
 for url in "${urls[@]}"; do
     echo "Downloading: $url"
-    # rip -c FLAC -q 3 -ndb url "$url"
     rip -c FLAC -q 3 url "$url"
     echo "Finished: $url"
+    echo "Sleeping..."
+    sleep $(( 20 + RANDOM % 20 ))
+
+    keep_usb_on
+    echo "--------------------------------------"
+done
+
+
+for url in "${urls[@]}"; do
+    echo "Downloading: $url"
+
+    keep_on_usb
+    rip -c FLAC -q 3 url "$url"
+
+    echo "Finished: $url"
     echo "Sleeping...";
-    sleep $(( 50 + RANDOM % 20 ))
+    sleep $(( 70 + RANDOM % 20 ))
 
     echo "--------------------------------------"
 done
